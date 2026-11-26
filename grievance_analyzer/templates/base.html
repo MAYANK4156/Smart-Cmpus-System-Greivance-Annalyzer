@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Grievance Analyzer{% endblock %} | Smart Campus</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head><body>
+{% set ep = request.endpoint %}
+<header class="top"><div class="top-in">
+  <a class="brand" href="/">
+    <span class="brand-mark"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#4fd1a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 10-10"/></svg></span>
+    <span><b>Grievance Analyzer</b><small>Smart campus sustainability</small></span>
+  </a>
+  <nav>
+    {% if logged_in and not is_admin %}
+      <a href="/" class="{{ 'on' if ep == 'submit' }}">Report an issue</a>
+      <a href="/my-complaints" class="{{ 'on' if ep == 'my_complaints' }}">My complaints</a>
+    {% endif %}
+    <a href="/complaints" class="{{ 'on' if ep == 'complaints' }}">All complaints</a>
+    {% if is_admin %}<a href="/dashboard" class="{{ 'on' if ep == 'dashboard' }}">Dashboard</a>{% endif %}
+    {% if logged_in %}
+      <span class="who">{{ user_name }}</span><a href="/logout">Log out</a>
+    {% else %}
+      <a href="/login" class="{{ 'on' if ep == 'login' }}">Log in</a>
+      <a href="/register" class="{{ 'on' if ep == 'register' }}">Register</a>
+    {% endif %}
+  </nav>
+</div></header>
+<main class="wrap">
+  {% for cat, m in get_flashed_messages(with_categories=true) %}<div class="flash flash-{{ cat }}" role="status">{{ m }}</div>{% endfor %}
+  {% block content %}{% endblock %}
+</main>
+{% block scripts %}{% endblock %}
+</body></html>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}{% block content %}
+<div class="page-head"><h1>Dashboard</h1><p>Where complaints come from and what needs attention first. <span id="mode" class="muted"></span></p></div>
+<div class="stats">
+  <div class="stat"><b id="total">0</b><span>Total complaints</span></div>
+  <div class="stat amber"><b id="pending">0</b><span>Pending</span></div>
+  <div class="stat red"><b id="high">0</b><span>High priority</span></div>
+  <div class="stat violet"><b id="dups">0</b><span>Duplicates</span></div>
+</div>
+<section class="hotspot">
+  <h2 id="hot-title">Hotspots</h2><p id="hot-text">Loading...</p>
+  <div class="chart-box tall"><canvas id="loc" aria-label="Complaints by location"></canvas></div>
+</section>
+<div class="grid3">
+  <div class="panel"><h2>By category</h2><div class="chart-box"><canvas id="cat" aria-label="Complaints by category"></canvas></div></div>
+  <div class="panel"><h2>By priority</h2><div class="chart-box"><canvas id="pri" aria-label="Complaints by priority"></canvas></div></div>
+  <div class="panel"><h2>By status</h2><div class="chart-box"><canvas id="sta" aria-label="Complaints by status"></canvas></div></div>
+</div>
+<div class="panel"><h2>Duplicate complaints</h2>
+  <div class="table-wrap"><table class="t"><thead><tr><th>Complaint</th><th>Duplicate of</th><th>Location</th><th>Text</th></tr></thead><tbody id="duptable"></tbody></table></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='chart.umd.js') }}"></script>
+<script>
+Chart.defaults.font.family = 'Manrope, system-ui, sans-serif';
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const PRI = {'High':'#d64545', 'Medium':'#e0a526', 'Low':'#7fa3b3'};
+const STA = {'Pending':'#c4cfcb', 'In Progress':'#4a7fc1', 'Resolved':'#1f9d6b'};
+const donut = (id, obj, colorMap) => new Chart(document.getElementById(id), {type:'doughnut',
+  data:{labels:Object.keys(obj), datasets:[{data:Object.values(obj), backgroundColor:Object.keys(obj).map(k => colorMap[k]), borderWidth:2, borderColor:'#fff'}]},
+  options:{maintainAspectRatio:false, cutout:'62%', plugins:{legend:{position:'bottom'}}}});
+fetch('/api/stats').then(r => r.json()).then(d => {
+  total.textContent = d.total; pending.textContent = d.by_status['Pending'];
+  high.textContent = d.by_priority['High']; dups.textContent = d.duplicates.length;
+  mode.textContent = 'Duplicates are found using ' + (d.ai_mode === 'tfidf-cosine' ? 'TF-IDF text similarity' : 'sentence embeddings') + '.';
+  const locs = Object.entries(d.by_location).sort((a, b) => b[1] - a[1]);
+  if (d.total) {
+    document.getElementById('hot-title').textContent = locs[0][0] + ' needs attention first';
+    document.getElementById('hot-text').textContent = locs[0][1] + ' of ' + d.total + ' complaints come from this location.';
+  } else {
+    document.getElementById('hot-title').textContent = 'No complaints yet';
+    document.getElementById('hot-text').textContent = 'Hotspots will appear here as soon as students report issues.';
+  }
+  new Chart(document.getElementById('loc'), {type:'bar',
+    data:{labels:locs.map(x => x[0]), datasets:[{data:locs.map(x => x[1]), borderRadius:6,
+      backgroundColor:locs.map((x, i) => i === 0 ? '#4fd1a0' : '#5d8b7e')}]},
+    options:{indexAxis:'y', maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{x:{beginAtZero:true, ticks:{precision:0, color:'#b9d3ca'}, grid:{color:'rgba(255,255,255,.12)'}},
+              y:{ticks:{color:'#e5f1ed'}, grid:{display:false}}}}});
+  const cats = Object.entries(d.by_category).filter(x => x[0] !== 'Unclassified' || x[1] > 0).sort((a, b) => b[1] - a[1]);
+  new Chart(document.getElementById('cat'), {type:'bar',
+    data:{labels:cats.map(x => x[0]), datasets:[{data:cats.map(x => x[1]), backgroundColor:'#14805a', borderRadius:6}]},
+    options:{indexAxis:'y', maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{x:{beginAtZero:true, ticks:{precision:0}}, y:{grid:{display:false}}}}});
+  donut('pri', d.by_priority, PRI);
+  donut('sta', d.by_status, STA);
+  duptable.innerHTML = d.duplicates.map(x => `<tr><td>#${x.id}</td><td>#${x.original}</td><td>${esc(x.location)}</td><td>${esc(x.text)}</td></tr>`).join('')
+    || '<tr><td colspan="4" class="muted">No duplicates found.</td></tr>';
+});
+</script>{% endblock %}

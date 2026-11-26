@@ -1,0 +1,19 @@
+text,category,priority,category_predicted,priority_predicted
+Our floor washroom has had zero water since morning exams started,Water,High,Water,High
+Bubbler fountain in the arts block sprays water sideways,Water,Medium,Water,Medium
+Maybe we can collect AC condensate water for the plants,Water,Low,Water,Medium
+Sparks flew out of the extension board in the staff room,Electricity,High,Electricity,Medium
+Half the classroom lights on the second floor do not work,Electricity,Medium,Cleanliness,Medium
+How about a poster campaign reminding everyone to switch off lights,Electricity,Low,Electricity,Medium
+Stinking heap of garbage near the back gate has been there for ten days,Waste,High,Waste,High
+Chips packets and cold drink cans lying around the football field,Waste,Medium,Electricity,Medium
+Can we get a bin for e-waste like old chargers,Waste,Low,Waste,Low
+Sewer water is overflowing into the ground floor passage,Cleanliness,High,Water,Medium
+Staff room tables are never wiped and look greasy,Cleanliness,Medium,Cleanliness,Medium
+Suggest cleaning the fan blades once a semester,Cleanliness,Low,Cleanliness,Low
+"Roof sheet above the bicycle stand is loose and flapping, risk of falling",Infrastructure,High,Electricity,High
+Main entrance door of the lab does not close properly,Infrastructure,Medium,Infrastructure,Medium
+Maybe label the rooms with bigger signs,Infrastructure,Low,Electricity,Medium
+A huge old banyan tree is being chopped near the main road,Green Space,High,Green Space,High
+The hedge outside the library looks scruffy and uncut,Green Space,Medium,Water,High
+Would be lovely to add a butterfly garden somewhere,Green Space,Low,Green Space,Low

@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Report an issue{% endblock %}{% block content %}
+<div class="page-head"><h1>Report a campus issue</h1>
+<p>Describe the problem and where it is. We suggest a category and priority, and check whether it was already reported.</p></div>
+<div class="cols">
+  <form method="post" class="card">
+    <label for="location" style="margin-top:0">Location</label>
+    <select id="location" name="location" required>{% for l in locations %}<option>{{ l }}</option>{% endfor %}</select>
+    <label for="text">What is the problem?</label>
+    <textarea id="text" name="text" minlength="10" required placeholder="Example: The tap in the hostel washroom has been leaking since Monday."></textarea>
+    <button class="btn">Submit complaint</button>
+  </form>
+  <aside class="side">
+    <h2>What happens next</h2>
+    <ol class="steps">
+      <li>The system reads your complaint and suggests a category and a priority.</li>
+      <li>It checks whether someone has already reported the same issue.</li>
+      <li>The administration reviews it and updates the status. You can follow it under My complaints.</li>
+    </ol>
+  </aside>
+</div>{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% from "_item.html" import item with context %}
+{% block title %}All complaints{% endblock %}{% block content %}
+<div class="page-head"><h1>All complaints</h1>
+<p>{% if is_admin %}Review each complaint, correct the suggested category or priority, and update its status.{% else %}Every reported issue and where it stands.{% endif %}</p></div>
+<form class="filters" method="get">
+  <select name="category" aria-label="Category"><option value="">All categories</option>{% for c in CATEGORIES %}<option {{ 'selected' if request.args.get('category') == c }}>{{ c }}</option>{% endfor %}</select>
+  <select name="priority" aria-label="Priority"><option value="">All priorities</option>{% for p in PRIORITIES %}<option {{ 'selected' if request.args.get('priority') == p }}>{{ p }}</option>{% endfor %}</select>
+  <select name="status" aria-label="Status"><option value="">All statuses</option>{% for s in STATUSES %}<option {{ 'selected' if request.args.get('status') == s }}>{{ s }}</option>{% endfor %}</select>
+  <button class="btn btn-sm">Apply filters</button><a class="btn btn-sm btn-ghost" href="/complaints">Clear</a>
+</form>
+{% if items %}<div class="list">{% for c in items %}{{ item(c, admin=is_admin) }}{% endfor %}</div>
+{% else %}<div class="empty"><h2>No complaints found</h2><p>Try different filters.</p></div>{% endif %}
+{% endblock %}

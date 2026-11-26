@@ -1,0 +1,125 @@
+@font-face{font-family:"Bricolage Grotesque";src:url(fonts/bricolage-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Bricolage Grotesque";src:url(fonts/bricolage-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Manrope;src:url(fonts/manrope-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Manrope;src:url(fonts/manrope-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Manrope;src:url(fonts/manrope-700.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{--ink:#10302c;--ink-2:#294a45;--muted:#5b6e6a;--bg:#f1f5f3;--line:#dce5e1;
+--leaf:#14805a;--leaf-dark:#0f6747;--leaf-bright:#4fd1a0;--leaf-soft:#e3f4ec;
+--high:#b83232;--high-soft:#fbe7e7;--med:#7a5200;--med-soft:#fdf0d0;--low:#3f6475;--low-soft:#e4eef3;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Manrope,system-ui,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",Manrope,system-ui,sans-serif;font-weight:700;letter-spacing:-.01em;line-height:1.15;margin:0}
+a{color:var(--leaf-dark)}
+.muted{color:var(--muted)}
+.wrap{max-width:1060px;margin:0 auto;padding:28px 20px 56px}
+
+/* header */
+.top{background:#fff;border-bottom:1px solid var(--line)}
+.top-in{max-width:1060px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand-mark{width:38px;height:38px;border-radius:11px;background:var(--ink);display:grid;place-items:center}
+.brand b{display:block;font:700 1.08rem "Bricolage Grotesque",Manrope,sans-serif;line-height:1.1}
+.brand small{display:block;color:var(--muted);font-size:.75rem;line-height:1.2}
+nav{margin-left:auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+nav a{padding:7px 13px;border-radius:999px;text-decoration:none;color:var(--ink-2);font-weight:500;font-size:.93rem}
+nav a:hover{background:var(--leaf-soft)}
+nav a.on{background:var(--ink);color:#fff}
+.who{color:var(--muted);font-size:.85rem;padding:0 8px}
+
+/* messages */
+.flash{padding:12px 16px;border-radius:10px;margin-bottom:18px;border:1px solid;font-weight:500}
+.flash-success{background:var(--leaf-soft);border-color:#b5e0cb;color:#0f5a3b}
+.flash-danger{background:var(--high-soft);border-color:#f0c2c2;color:#8d2323}
+.flash-warning,.flash-info{background:var(--med-soft);border-color:#f0d9a0;color:#6b4700}
+
+/* forms and buttons */
+label{display:block;font-weight:700;font-size:.9rem;margin:16px 0 6px}
+input,select,textarea{width:100%;padding:11px 13px;border:1px solid #c3d1cb;border-radius:10px;background:#fff;color:var(--ink);font:inherit}
+textarea{resize:vertical;min-height:140px}
+:focus-visible{outline:3px solid #7fd3ae;outline-offset:2px}
+.btn{display:inline-block;border:0;background:var(--leaf);color:#fff;padding:11px 20px;border-radius:10px;font:700 .95rem Manrope,system-ui,sans-serif;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--leaf-dark)}
+.btn-sm{padding:7px 13px;font-size:.85rem;border-radius:8px}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid #c3d1cb}
+.btn-ghost:hover{background:var(--leaf-soft)}
+form .btn{margin-top:20px}
+.alt{margin:18px 0 0;color:var(--muted);font-size:.93rem}
+
+/* page structure */
+.page-head{margin-bottom:22px}
+.page-head h1{font-size:2.05rem}
+.page-head p{color:var(--muted);margin:8px 0 0;max-width:62ch}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.side{background:var(--ink);color:#cfe3dc;border-radius:16px;padding:26px}
+.side h2{color:#fff;font-size:1.2rem;margin-bottom:18px}
+.steps{margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;margin:0 0 16px}
+.steps li:last-child{margin-bottom:0}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--leaf-bright);color:var(--ink);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+
+/* sign in / register */
+.auth{display:grid;grid-template-columns:1fr 1fr;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#fff;min-height:470px}
+.auth-art{position:relative;background:var(--ink);color:#e5f1ed;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.auth-art svg{position:absolute;right:-40px;top:-30px;width:300px;height:300px;opacity:.16}
+.auth-art h1{color:#fff;font-size:2.15rem;margin-bottom:12px;position:relative}
+.auth-art p{margin:0;color:#b9d3ca;max-width:34ch;position:relative}
+.auth-form{padding:40px}
+.auth-form h2{font-size:1.5rem}
+
+/* complaint list */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;align-items:center}
+.filters select{width:auto;min-width:160px}
+.filters .btn{margin-top:0}
+.list{display:grid;gap:12px}
+.item{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px 16px 24px}
+.item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--rail,#c3d1cb)}
+.item.p-high{--rail:#d64545}.item.p-medium{--rail:#e0a526}.item.p-low{--rail:#7fa3b3}
+.item-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;font-size:.88rem;color:var(--muted)}
+.item-top strong{color:var(--ink)}
+.item-top .when{margin-left:auto}
+.item-text{margin:0;max-width:75ch}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-weight:700;font-size:.78rem}
+.pill-cat{background:var(--leaf-soft);color:#0f5a3b}
+.pill-high{background:var(--high-soft);color:var(--high)}
+.pill-medium{background:var(--med-soft);color:var(--med)}
+.pill-low{background:var(--low-soft);color:var(--low)}
+.pill-status-pending{background:#eceff0;color:#44514e}
+.pill-status-in-progress{background:#e1ecfb;color:#1f4f8f}
+.pill-status-resolved{background:var(--leaf-soft);color:#0f5a3b}
+.dup{background:#efe9fb;color:#51348f}
+.admin-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);align-items:center}
+.admin-row select{width:auto;padding:7px 10px;font-size:.88rem;border-radius:8px}
+.admin-row .btn{margin-top:0}
+.empty{text-align:center;padding:52px 20px;color:var(--muted);background:#fff;border:1px dashed #c3d1cb;border-radius:16px}
+.empty h2{color:var(--ink);font-size:1.25rem;margin-bottom:6px}
+.empty .btn{margin-top:16px}
+
+/* dashboard */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px 16px}
+.stat::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--c,#4fd1a0)}
+.stat.red{--c:#d64545}.stat.amber{--c:#e0a526}.stat.violet{--c:#8a6bd1}
+.stat b{display:block;font:700 2.1rem "Bricolage Grotesque",Manrope,sans-serif;line-height:1}
+.stat span{color:var(--muted);font-size:.88rem}
+.hotspot{background:var(--ink);color:#e5f1ed;border-radius:18px;padding:24px 26px;margin-bottom:20px}
+.hotspot h2{color:#fff;font-size:1.5rem;margin-bottom:4px}
+.hotspot p{margin:0 0 14px;color:#b9d3ca}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:20px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.panel h2{font-size:1.05rem;margin-bottom:12px}
+.chart-box{position:relative;height:250px}
+.chart-box.tall{height:340px}
+.table-wrap{overflow-x:auto}
+.t{width:100%;border-collapse:collapse}
+.t th{text-align:left;font-size:.85rem;color:var(--muted);border-bottom:1px solid var(--line);padding:8px 10px}
+.t td{padding:10px;border-bottom:1px solid #edf2f0;vertical-align:top}
+
+@media (max-width:860px){
+ .cols,.auth,.grid3{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .auth-art{min-height:220px}.auth-art,.auth-form{padding:28px}
+ nav{margin-left:0}
+}
+@media (prefers-reduced-motion:no-preference){.flash{animation:fade .35s ease}}
+@keyframes fade{from{opacity:0}to{opacity:1}}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% from "_item.html" import item with context %}
+{% block title %}My complaints{% endblock %}{% block content %}
+<div class="page-head"><h1>My complaints</h1><p>Follow the status of every issue you have reported.</p></div>
+{% if items %}<div class="list">{% for c in items %}{{ item(c) }}{% endfor %}</div>
+{% else %}<div class="empty"><h2>Nothing reported yet</h2><p>Spotted a leaking tap or an overflowing bin? Tell us about it.</p><a class="btn" href="/">Report an issue</a></div>{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Register{% endblock %}{% block content %}
+<div class="auth">
+  <div class="auth-art"><svg viewBox="0 0 24 24" fill="none" stroke="#4fd1a0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 10-10"/></svg>
+    <h1>Your report reaches the people who can fix it.</h1>
+    <p>Register once, then submit complaints and watch their status change.</p>
+  </div>
+  <div class="auth-form">
+    <h2>Create your account</h2>
+    <p class="muted">Students only. It takes under a minute.</p>
+    <form method="post">
+      <label for="name">Full name</label><input id="name" name="name" required autocomplete="name">
+      <label for="email">Email</label><input id="email" type="email" name="email" required autocomplete="email">
+      <label for="password">Password (at least 6 characters)</label><input id="password" type="password" name="password" minlength="6" required autocomplete="new-password">
+      <label for="confirm">Confirm password</label><input id="confirm" type="password" name="confirm" required autocomplete="new-password">
+      <button class="btn">Create account</button>
+      <p class="alt">Already registered? <a href="/login">Log in</a></p>
+    </form>
+  </div>
+</div>{% endblock %}

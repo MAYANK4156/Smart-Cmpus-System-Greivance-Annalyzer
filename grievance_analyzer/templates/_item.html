@@ -1,0 +1,21 @@
+{% macro item(c, admin=False) %}
+<article class="item p-{{ c.priority|lower }}">
+  <div class="item-top">
+    <strong>#{{ c.id }}</strong><span>{{ c.location }}</span>
+    <span class="pill pill-cat">{{ c.category }}</span>
+    <span class="pill pill-{{ c.priority|lower }}">{{ c.priority }} priority</span>
+    <span class="pill pill-status-{{ c.status|lower|replace(' ', '-') }}">{{ c.status }}</span>
+    {% if c.duplicate_of %}<span class="pill dup">Similar to #{{ c.duplicate_of }}</span>{% endif %}
+    <span class="when">{{ c.created_at.strftime('%d %b %Y') }}</span>
+  </div>
+  <p class="item-text">{{ c.text }}</p>
+  {% if admin %}
+  <form method="post" action="/admin/update/{{ c.id }}" class="admin-row">
+    <select name="status" aria-label="Status">{% for s in STATUSES %}<option {{ 'selected' if c.status == s }}>{{ s }}</option>{% endfor %}</select>
+    <select name="category" aria-label="Category">{% for x in CATEGORIES %}<option {{ 'selected' if c.category == x }}>{{ x }}</option>{% endfor %}</select>
+    <select name="priority" aria-label="Priority">{% for p in PRIORITIES %}<option {{ 'selected' if c.priority == p }}>{{ p }}</option>{% endfor %}</select>
+    <button class="btn btn-sm">Save changes</button>
+  </form>
+  {% endif %}
+</article>
+{% endmacro %}

@@ -1,0 +1,31 @@
+text,category,priority,category_predicted,priority_predicted
+No water coming in the tap of the girls washroom since yesterday evening,Water,High,Water,Medium
+The tap near the canteen keeps dripping all day,Water,Medium,Green Space,Medium
+Can we get a water purifier near the library entrance,Water,Low,Water,High
+Big pipe broke outside the hostel and the whole road is flooded,Water,High,Infrastructure,Medium
+Drinking water cooler on the second floor gives warm water,Water,Medium,Water,Medium
+Switchboard in the lab is giving sparks when we plug in laptops,Electricity,High,Infrastructure,Low
+All the fans were left running in the empty seminar hall overnight,Electricity,Medium,Electricity,Medium
+Would be good to put motion sensors for lights in the corridors,Electricity,Low,Electricity,Medium
+Power cut in the hostel block for the whole afternoon,Electricity,High,Electricity,High
+Light in the reading room blinks continuously,Electricity,Medium,Electricity,Medium
+"Dustbin outside the canteen is full and smells bad, not emptied for a week",Waste,High,Water,High
+Students throw plastic bottles on the ground near the sports ground,Waste,Medium,Waste,Medium
+Please provide separate bins for paper and plastic in the library,Waste,Low,Waste,Low
+Someone is burning dry leaves and garbage behind the hostel,Waste,High,Waste,High
+Food leftovers from the mess are dumped in the open,Waste,Medium,Waste,High
+Toilets on the ground floor have not been cleaned in days and stink,Cleanliness,High,Cleanliness,Medium
+Classroom floors are dusty and nobody sweeps them,Cleanliness,Medium,Electricity,Medium
+Can the corridor be mopped more often,Cleanliness,Low,Electricity,Medium
+Lot of mosquitoes near the drain behind the lab,Cleanliness,High,Cleanliness,High
+There is no handwash in the girls washroom,Cleanliness,Medium,Electricity,Medium
+A piece of the ceiling fell down in classroom 204,Infrastructure,High,Infrastructure,High
+Many benches in the seminar hall are broken,Infrastructure,Medium,Infrastructure,Medium
+Paint on the walls of the corridor is coming off,Infrastructure,Low,Infrastructure,Low
+The railing on the staircase near the library is loose and dangerous,Infrastructure,High,Green Space,High
+Window glass in the lab is cracked,Infrastructure,Medium,Infrastructure,Low
+They are cutting old trees near the parking for new construction,Green Space,High,Green Space,High
+Plants in the campus garden are drying because nobody waters them,Green Space,Medium,Green Space,Medium
+It would be nice to have more trees and shade near the ground,Green Space,Low,Green Space,High
+A huge dry branch is hanging over the walking path and may fall,Green Space,High,Green Space,High
+Grass in the lawn near the admin block is overgrown,Green Space,Low,Green Space,Medium
